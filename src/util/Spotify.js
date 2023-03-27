@@ -1,6 +1,6 @@
 const clientId = '3e3753e976d847a0bc29ab8b07ae180f';
 
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'https://chimerical-tapioca-9e5c75.netlify.app/';
 
 let accessToken;
 
