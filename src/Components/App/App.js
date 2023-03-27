@@ -6,20 +6,16 @@ import Playlist from "../Playlist/Playlist";
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 
-// SearchBar  SearchResults
+
+import Spotify from '../../util/Spotify';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [{ name: 'name1', artist: 'artist1', album: 'album1', id: 1 },
-      { name: 'name2', artist: 'artist2', album: 'album2', id: 2 },
-      { name: 'name3', artist: 'artist3', album: 'album3', id: 3 }
-      ],
+      searchResults: [],
       playlistName: "My Playlist",
-      playlistTracks: [{ name: 'playListName1', artist: 'artist track1', album: 'album track1', id: 4 },
-      { name: 'playListName2', artist: 'artist track2', album: 'album track2', id: 5 },
-      { name: 'playListName3', artist: 'artist track3', album: 'album track3', id: 6 }],
+      playlistTracks: [],
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -50,20 +46,24 @@ class App extends React.Component {
   }
 
   savePlaylist() {
-    //alert("That button is working correctly");
-    const trackURIs = this.state.playlistTracks.map(track => track.uri);
-    // save the user's playlist and their account 
+    const trackUris = this.state.playlistTracks.map(track => track.uri);
+    Spotify.savePlayList(this.state.playlistName, trackUris).then(() => {
+      this.setState({
+        playlistName: 'New Playlist',
+        playlistTracks: []
+      })
+    })
   }
 
   search(term) {
-    console.log(term);
-
+    Spotify.search(term).then(searchResults => {
+      this.setState({ searchResults: searchResults });
+    });
   }
 
   //get a Spotify user's access token 
   //send a search request to the Spotify API
   //save a user's playlist to their Spotify account
-
 
   render() {
     return (
@@ -91,7 +91,6 @@ class App extends React.Component {
         </div>
       </div>
     );
-
   }
 }
 

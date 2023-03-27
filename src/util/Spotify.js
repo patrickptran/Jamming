@@ -1,4 +1,4 @@
-const clientId = '1c04e9d0729345409929f5de163ff7dc';
+const clientId = '3e3753e976d847a0bc29ab8b07ae180f';
 
 const redirectURI = "http://localhost:3000/";
 
