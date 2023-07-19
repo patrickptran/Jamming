@@ -7,6 +7,7 @@ You will use your knowledge of React components, passing state, and requests wit
 
 # Demo screen
 ![Alt Text](./public/jamming-project-four-three-preview.webp)
+<img src="./public/jamming-project-four-three-preview.webp" width="max-width" height="max-height" />
 
 ## Project Requirements
 * Build a web app using React
